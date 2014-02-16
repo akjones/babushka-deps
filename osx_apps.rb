@@ -6,13 +6,10 @@ dep "VirtualBox.installer" do
   source "http://download.virtualbox.org/virtualbox/4.3.6/VirtualBox-4.3.6-91406-OSX.dmg"
 end
 
-dep "Vagrant.app" do
+dep "Vagrant.installer" do
   requires "VirtualBox.installer"
 
-  met? {
-    "/usr/bin/vagrant".p.exists?
-  }
-
+  met? { "/usr/bin/vagrant".p.exists? }
   source "https://dl.bintray.com/mitchellh/vagrant/Vagrant-1.4.3.dmg"
 end
 
@@ -24,7 +21,7 @@ dep "Alfred.app" do
   source "http://cachefly.alfredapp.com/Alfred_2.1.1_227.zip"
 end
 
-dep "ITerm.app" do
+dep "iTerm.app" do
   source "http://iterm2.com/downloads/stable/iTerm2_v1_0_0.zip"
 end
 
@@ -65,8 +62,9 @@ dep "Steam.app" do
   source "http://media.steampowered.com/client/installer/steam.dmg"
 end
 
-dep "Spotify.app" do
-  source "http://download.spotify.com/SpotifyInstaller.zip"
+dep "Spotify" do
+  met? { "/Applications/Spotify.app".p.exist? }
+  meet { unmeetable! "Install Spotify yourself" }
 end
 
 dep "SourceTree.app" do
@@ -96,8 +94,9 @@ dep "Twitter" do
   meet { unmeetable! "Install Twitter via the App Store." }
 end
 
-dep "REAPER64.app" do
-  source "http://www.reaper.fm/files/4.x/reaper4591_x86_64.dmg"
+dep "Reaper" do
+  met? { "/Applications/REAPER64.app".p.exist? }
+  meet { unmeetable! "Reaper has a eula" }
 end
 
 dep "Skype.app" do
@@ -119,9 +118,9 @@ dep "osx-binaries" do
   requires "VLC.app"
   requires "VirtualBox.installer"
   requires "Dropbox.app"
-  requires "Vagrant.app"
+  requires "Vagrant.installer"
   requires "Alfred.app"
-  requires "ITerm.app"
+  requires "iTerm.app"
   requires "Spectacle.app"
   requires "Adium.app"
   requires "Caffeine.app"
@@ -136,15 +135,21 @@ end
 
 dep "personal-osx-binaries" do
   requires "Crashplan.app"
-  requires "Growl"
   requires "Steam.app"
-  requires "Spotify.app"
   requires "Sparrow"
   requires "KeePassX.app"
   requires "HandBrake.app"
+end
+
+dep "app-store" do
   requires "Joystick Mapper"
-  requires "REAPER64.app"
+  requires "Growl"
   requires "Twitter"
+end
+
+dep "apps-with-eula" do
+  requires "Spotify"
+  requires "Reaper"
 end
 
 dep "enable-full-disk-encryption" do
@@ -274,7 +279,6 @@ dep "additional-prefs" do
 end
 
 dep "all-osx-settings" do
-  requires "enable-full-disk-encryption"
   requires "capslock-to-ctrl"
   requires "fast-key-repeat"
   requires "disable-widgets"
@@ -287,5 +291,7 @@ end
 dep "osx" do
   requires "osx-binaries"
   requires "personal-osx-binaries"
+  requires "app-store"
+  requires "apps-with-eula"
   requires "all-osx-settings"
 end

@@ -1,7 +1,6 @@
 managed_apps = %w{
   ack
   curl
-  emacs
   git
   lua
   luarocks
@@ -44,7 +43,7 @@ dep "extempore" do
   requires "extempore-osx-tapped"
 
   met? { "/usr/local/Cellar/extempore/HEAD/extempore".p.exist? }
-  meet { "brew install extempore --HEAD" }
+  meet { shell "brew install extempore --HEAD", log: true }
 end
 
 dep "extempore-osx-tapped" do
@@ -57,6 +56,11 @@ dep "extempore-osx-tapped" do
   }
 end
 
+dep "emacs" do
+  met? { "/usr/local/Cellar/emacs/24.3/Emacs.app".p.exist? }
+  meet { shell("brew install emacs --cocoa", log: true) }
+end
+
 dep "nvm" do
   requires "curl.bin"
   met? { "#{ENV["HOME"]}/.nvm".p.exist? }
@@ -64,28 +68,22 @@ dep "nvm" do
 end
 
 dep "rvm" do
-  met? {
-    "~/.rvm/scripts/rvm".p.file?
-  }
-
-  meet {
-    shell "bash -c '`curl https://rvm.beginrescueend.com/install/rvm`'"
-  }
+  met? { "~/.rvm/scripts/rvm".p.exist? }
+  meet { shell "curl -sSL https://get.rvm.io | sh ", log: true }
 end
 
 dep "oh-my-zsh" do
   requires "curl.bin"
   requires "zsh.bin"
   met? { "~/.oh-my-zsh".p.exist? }
-  meet { "curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh" }
+  meet { shell "curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh", log: true }
 end
 
 dep "all-managed-apps" do
   requires *(managed_apps + managed_with_alternate_provides.keys).map { |a| "#{a}.bin" }
   requires "extempore"
+  requires "emacs"
   requires "nvm"
   requires "rvm"
   requires "oh-my-zsh"
 end
-
-
