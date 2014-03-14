@@ -1,6 +1,7 @@
 managed_apps = %w{
   ack
   curl
+  fish
   git
   lua
   luarocks
@@ -32,7 +33,7 @@ libs = %w{
   libusb
 }
 
-libs.each do |app, bin|
+libs.each do |app|
   dep "#{app}.bin" do
     installs app
     provides []
@@ -80,7 +81,7 @@ dep "oh-my-zsh" do
 end
 
 dep "all-managed-apps" do
-  requires *(managed_apps + managed_with_alternate_provides.keys).map { |a| "#{a}.bin" }
+  requires *(managed_apps + managed_with_alternate_provides.keys + libs).map { |a| "#{a}.bin" }
   requires "extempore"
   requires "emacs"
   requires "nvm"
