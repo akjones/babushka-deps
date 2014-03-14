@@ -1,3 +1,15 @@
+#http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-macosx-x64.dmg
+
+dep "GPGTools.installer" do
+  source "https://releases.gpgtools.org/GPG%20Suite%20-%202013.10.22.dmg"
+  met? { "/Applications/GPG\ Keychain\ Access.app".p.exists? }
+end
+
+dep "MenuMeters.installer" do
+  source "http://www.ragingmenace.com/software/download/MenuMeters.dmg"
+  provides []
+end
+
 dep "VLC.app" do
   source "http://get.videolan.org/vlc/2.1.1/macosx/vlc-2.1.1.dmg"
 end
@@ -115,6 +127,8 @@ end
 
 dep "osx-binaries" do
   requires "core:homebrew"
+  requires "GPGTools.installer"
+  requires "MenuMeters.installer"
   requires "VLC.app"
   requires "VirtualBox.installer"
   requires "Dropbox.app"
@@ -279,7 +293,7 @@ dep "additional-prefs" do
 end
 
 dep "all-osx-settings" do
-  requires "capslock-to-ctrl"
+  #requires "capslock-to-ctrl"
   requires "fast-key-repeat"
   requires "disable-widgets"
   requires "move-dock-right"
