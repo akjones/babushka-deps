@@ -1,7 +1,5 @@
-dep "macbook" do
+dep "slim" do
   requires "all-core-tools"
-  requires "all-other-tools"
-  requires "osx-personal"
   requires "osx-common"
   requires "dotfiles"
   requires "spacemacs"
