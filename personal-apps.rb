@@ -6,7 +6,7 @@ managed_apps = %w{
   lua
   luarocks
   node
-  youtuble-dl
+  youtube-dl
 }
 
 managed_apps.each do |app|
