@@ -127,5 +127,4 @@ dep "osx-personal" do
   requires "personal-osx-binaries"
   requires "app-store"
   requires "apps-with-eula"
-  requires "all-osx-settings"
 end
