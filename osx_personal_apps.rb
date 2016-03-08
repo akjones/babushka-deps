@@ -1,8 +1,8 @@
 #http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-macosx-x64.dmg
 
 dep "GPGTools.installer" do
-  source "https://releases.gpgtools.org/GPG%20Suite%20-%202013.10.22.dmg"
-  met? { "/Applications/GPG\ Keychain\ Access.app".p.exists? }
+  source "https://releases.gpgtools.org/GPG_Suite-2015.09.dmg"
+  met? { "/Applications/GPG\ Keychain.app".p.exist? }
 end
 
 dep "VLC.app" do
@@ -98,7 +98,6 @@ dep "osx-binaries" do
   requires "Google Chrome.app"
   requires "Firefox.app"
   requires "core:xcode tools"
-  requires "SourceTree.app"
   requires "Skype.app"
   requires "GIMP.app"
   requires "IntelliJ.app"
@@ -123,7 +122,7 @@ dep "apps-with-eula" do
   requires "Reaper"
 end
 
-dep "osx-oersonal" do
+dep "osx-personal" do
   requires "osx-binaries"
   requires "personal-osx-binaries"
   requires "app-store"

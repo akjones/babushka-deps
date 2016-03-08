@@ -40,7 +40,7 @@ end
 dep "extempore" do
   requires "extempore-osx-tapped"
 
-  met? { "/usr/local/Cellar/extempore/0.6.0/extempore".p.exist? }
+  met? { "/usr/local/Cellar/extempore/0.6.0".p.exist? }
   meet { shell "brew install extempore --with-extended", log: true }
 end
 
