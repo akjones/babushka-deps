@@ -40,18 +40,13 @@ end
 dep "extempore" do
   requires "extempore-osx-tapped"
 
-  met? { "/usr/local/Cellar/extempore/HEAD/extempore".p.exist? }
-  meet { shell "brew install extempore --HEAD", log: true }
+  met? { "/usr/local/Cellar/extempore/0.6.0/extempore".p.exist? }
+  meet { shell "brew install extempore --with-extended", log: true }
 end
 
 dep "extempore-osx-tapped" do
-  met? {
-    shell("brew tap").include? "benswift/extempore"
-  }
-
-  meet {
-    shell("brew tap benswift/extempore")
-  }
+  met? { shell("brew tap").include? "benswift/extempore" }
+  meet { shell("brew tap benswift/extempore") }
 end
 
 dep "all-other-tools" do
