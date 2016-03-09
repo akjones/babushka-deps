@@ -1,5 +1,5 @@
 dep "emacs" do
-  met? { "/usr/local/Cellar/emacs/24.5/Emacs.app".p.exist? }
+  met? { "/opt/boxen/homebrew/bin/emacs".p.exist? }
   meet { shell("brew install emacs --cocoa", log: true) }
 end
 

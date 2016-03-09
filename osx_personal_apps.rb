@@ -17,6 +17,17 @@ dep "Adium.app" do
   source "http://jaist.dl.sourceforge.net/project/adium/Adium_1.5.9.dmg"
 end
 
+dep "VirtualBox.installer" do
+  source "http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0.16-105871-OSX.dmg"
+end
+
+dep "Vagrant.installer" do
+  requires "VirtualBox.installer"
+
+  met? { "/usr/bin/vagrant".p.exists? }
+  source "https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg"
+end
+
 dep "Crashplan.app" do
   source "https://download.code42.com/installs/mac/install/CrashPlan/CrashPlan_4.5.2_Mac.dmg"
 end
@@ -96,6 +107,8 @@ dep "osx-binaries" do
   requires "Dropbox.app"
   requires "Adium.app"
   requires "Google Chrome.app"
+  requires "VirtualBox.installer"
+  requires "Vagrant.installer"
   requires "Firefox.app"
   requires "core:xcode tools"
   requires "Skype.app"

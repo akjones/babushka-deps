@@ -60,7 +60,5 @@ end
 
 dep "all-core-tools" do
   requires *(managed_apps + managed_with_alternate_provides.keys + libs).map { |a| "#{a}.bin" }
-  requires "nvm"
-  requires "rvm"
   requires "oh-my-zsh"
 end

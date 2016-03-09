@@ -3,19 +3,8 @@ dep "MenuMeters.installer" do
   provides []
 end
 
-dep "VirtualBox.installer" do
-  source "http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0.16-105871-OSX.dmg"
-end
-
-dep "Vagrant.installer" do
-  requires "VirtualBox.installer"
-
-  met? { "/usr/bin/vagrant".p.exists? }
-  source "https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg"
-end
-
 dep "Alfred.app" do
-  source "http://cachefly.alfredapp.com/Alfred_2.1.1_227.zip"
+  source "https://cachefly.alfredapp.com/Alfred_2.8.2_432.zip"
 end
 
 dep "iTerm.app" do
@@ -32,8 +21,6 @@ end
 
 dep "osx-common-binaries" do
   requires "MenuMeters.installer"
-  requires "VirtualBox.installer"
-  requires "Vagrant.installer"
   requires "Alfred.app"
   requires "iTerm.app"
   requires "Spectacle.app"
